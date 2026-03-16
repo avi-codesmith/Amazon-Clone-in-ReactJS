@@ -12,8 +12,11 @@
 //   console.error(error);
 // }
 
-export async function fetchRandomProducts(limit) {
-  const response = await fetch(`https://dummyjson.com/products?limit=${limit}`);
+export async function fetchRandomProducts(limit, skip, signal) {
+  const response = await fetch(
+    `https://dummyjson.com/products?limit=${limit}&skip=${skip}`,
+    signal,
+  );
 
   if (!response.ok) {
     const error = new Error("Ops! something went wrong, Pls try again!");
@@ -21,6 +24,5 @@ export async function fetchRandomProducts(limit) {
   }
 
   const data = await response.json();
-  console.log(data.products);
   return data;
 }

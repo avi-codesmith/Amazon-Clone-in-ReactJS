@@ -1,105 +1,77 @@
 import { useQuery } from "@tanstack/react-query";
 import { fetchRandomProducts } from "../http/http";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 export default function Hero() {
-  const productsArr = [];
   const [limit, setLimit] = useState(10);
+  const [skip, setSkip] = useState(10);
+
+  const [productsData, setProductsData] = useState([]);
+
   const { data, isPending, isError, error } = useQuery({
-    queryKey: ["events", limit],
-    queryFn: () => fetchRandomProducts(limit),
+    queryKey: ["products"],
+    queryFn: ({ signal }) => fetchRandomProducts(10, 0, signal),
   });
 
-  let content;
+  useEffect(() => {
+    if (data) {
+      setProductsData(data.products);
+    }
+  }, [data]);
 
-  if (isPending) {
-    content = "Loading...";
+  function handleLimit() {
+    setLimit((prev) => prev + 10);
+    setSkip((prev) => prev + limit);
   }
 
-  if (isError) {
-    content = <div>{error}</div>;
+  async function loadMore() {
+    const newData = await fetchRandomProducts(limit, skip);
+
+    setProductsData((prev) => [...prev, ...newData.products]);
   }
 
-  if (data) {
-    // content = data.products.map((product) => (
-    //   <div className="product" key={product.id}>
-    //     <div className="product-image">
-    //       <img src={product.images[0]} alt={product.title} />
-    //     </div>
-    //     <h1 className="product-title">{product.title}</h1>
-    //     <h2 className="product-price">$ {product.price}</h2>
-    //     <div className="rating">
-    //       <p className="star">
-    //         {"★".repeat(Math.round(product.rating))}
-    //         {"☆".repeat(5 - Math.round(product.rating))}
-    //       </p>
-    //     </div>
-    //     <div className="tags">
-    //       {product.tags.map((tag) => (
-    //         <p key={tag}>{tag}</p>
-    //       ))}
-    //     </div>
-    //     <p className="description">{product.description}</p>
-    //   </div>
-    // ));
-    productsArr.push(data.products);
-  }
+  if (isPending) return "Loading...";
+  if (isError) return <div>{error.message}</div>;
 
-  console.log(productsArr);
-
-  function loadMore() {
-    setLimit((prev) => prev + 20);
-  }
-
-  function loadLess() {
-    setLimit((prev) => prev - 20);
-  }
-
-  const productsItems =
-    productsArr.length > 0 &&
-    productsArr[0].map((product) => (
-      <div className="product" key={product.title}>
-        <div className="product-image">
-          <img src={product.images[0]} alt={product.title} />
-        </div>
-        <h1 className="product-title">{product.title}</h1>
-        <h2 className="product-price">$ {product.price}</h2>
-        <div className="rating">
-          <p className="star">
-            {"★".repeat(Math.round(product.rating))}
-            {"☆".repeat(5 - Math.round(product.rating))}
-          </p>
-        </div>
-        <div className="tags">
-          {product.tags.map((tag) => (
-            <p key={tag}>{tag}</p>
-          ))}
-        </div>
-        <p className="description">{product.description}</p>
-      </div>
-    ));
+  console.log(productsData);
 
   return (
-    <>
-      <section className="hero">
-        <h1>Explore Our products</h1>
-        <div className="products">
-          {productsItems}
-          {content}
-        </div>
+    <section className="hero">
+      <h1>Explore Our products</h1>
 
-        {limit <= 100 && (
-          <button className="show-btn" onClick={loadMore}>
-            Show More
-          </button>
-        )}
-
-        {limit >= 20 && (
-          <button className="show-btn" onClick={loadLess}>
-            Show Less
-          </button>
-        )}
-      </section>
-    </>
+      <div className="products">
+        {productsData.length > 0 &&
+          productsData.map((products) => (
+            <div className="product" key={products.id}>
+              <div className="product-image">
+                <img src={products.images[0]} alt={products.title} />
+              </div>
+              <h1 className="product-title">{products.title}</h1>
+              <h2 className="product-price">$ {products.price}</h2>
+              <div className="rating">
+                <p className="star">
+                  {"★".repeat(Math.round(products.rating))}
+                  {"☆".repeat(5 - Math.round(products.rating))}
+                </p>
+              </div>
+              <div className="tags">
+                {products.tags.map((tag) => (
+                  <p key={tag}>{tag}</p>
+                ))}
+              </div>
+              <p className="description">{products.description}</p>
+            </div>
+          ))}
+      </div>
+      <button
+        className="show-btn"
+        onClick={() => {
+          loadMore();
+          handleLimit();
+        }}
+      >
+        Show More
+      </button>
+    </section>
   );
 }
