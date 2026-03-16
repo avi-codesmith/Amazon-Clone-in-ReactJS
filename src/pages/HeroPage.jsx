@@ -3,14 +3,14 @@ import { fetchRandomProducts } from "../http/http";
 import { useState, useEffect } from "react";
 
 export default function Hero() {
-  const [limit, setLimit] = useState(10);
-  const [skip, setSkip] = useState(10);
+  const [limit, setLimit] = useState(20);
+  const [skip, setSkip] = useState(20);
 
   const [productsData, setProductsData] = useState([]);
 
   const { data, isPending, isError, error } = useQuery({
     queryKey: ["products"],
-    queryFn: ({ signal }) => fetchRandomProducts(10, 0, signal),
+    queryFn: ({ signal }) => fetchRandomProducts(20, 0, signal),
   });
 
   useEffect(() => {
@@ -38,7 +38,6 @@ export default function Hero() {
   return (
     <section className="hero">
       <h1>Explore Our products</h1>
-
       <div className="products">
         {productsData.length > 0 &&
           productsData.map((products) => (
@@ -63,15 +62,17 @@ export default function Hero() {
             </div>
           ))}
       </div>
-      <button
-        className="show-btn"
-        onClick={() => {
-          loadMore();
-          handleLimit();
-        }}
-      >
-        Show More
-      </button>
+      {productsData.length <= 100 && (
+        <button
+          className="show-btn"
+          onClick={() => {
+            loadMore();
+            handleLimit();
+          }}
+        >
+          Show More
+        </button>
+      )}
     </section>
   );
 }

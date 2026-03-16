@@ -4,29 +4,53 @@ import logo from "../asset/logo.png";
 
 export default function Header() {
   return (
-    <header className="header">
-      <div className="logo">
-        <img src={logo} alt="logo" />
-      </div>
+    <>
+      <header className="header">
+        <div className="logo">
+          <img src={logo} alt="logo" />
+        </div>
 
-      <div className="search">
-        <input type="search" placeholder="Search Amazon" />
-        <button className="search-btn">🔍</button>
-      </div>
+        <div className="search">
+          <input type="search" placeholder="Search Amazon" />
+          <button className="search-btn">🔍</button>
+        </div>
 
-      <nav className="navigation">
-        <NavLink to="/" className="nav-item">
-          Login
-        </NavLink>
+        <nav className="navigation">
+          <NavLink to="/" className="nav-item">
+            Login
+          </NavLink>
 
-        <NavLink to="/" className="nav-item">
-          Signup
-        </NavLink>
+          <NavLink to="/" className="nav-item">
+            Signup
+          </NavLink>
 
-        <NavLink to="/" className="nav-item cart">
-          🛒 Cart
-        </NavLink>
-      </nav>
-    </header>
+          <NavLink to="/" className="nav-item cart">
+            🛒 Cart
+          </NavLink>
+        </nav>
+      </header>
+      <header className="product-list">
+        <ul>
+          <li>
+            <NavLink>Cosmetic</NavLink>
+          </li>
+          <li>
+            <NavLink>Food</NavLink>
+          </li>
+          <li>
+            <NavLink>Kitchen</NavLink>
+          </li>
+          <li>
+            <NavLink>Mobiles</NavLink>
+          </li>
+          <li>
+            <NavLink>Sports</NavLink>
+          </li>
+          <li>
+            <NavLink>Watches</NavLink>
+          </li>
+        </ul>
+      </header>
+    </>
   );
 }
