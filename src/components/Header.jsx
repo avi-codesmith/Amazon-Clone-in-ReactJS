@@ -31,24 +31,17 @@ export default function Header() {
       </header>
       <header className="product-list">
         <ul>
-          <li>
-            <NavLink>Cosmetic</NavLink>
-          </li>
-          <li>
-            <NavLink>Food</NavLink>
-          </li>
-          <li>
-            <NavLink>Kitchen</NavLink>
-          </li>
-          <li>
-            <NavLink>Mobiles</NavLink>
-          </li>
-          <li>
-            <NavLink>Sports</NavLink>
-          </li>
-          <li>
-            <NavLink>Watches</NavLink>
-          </li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
         </ul>
       </header>
     </>

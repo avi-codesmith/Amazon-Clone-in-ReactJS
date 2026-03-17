@@ -1,37 +1,25 @@
-import { useQuery } from "@tanstack/react-query";
-import { fetchRandomProducts } from "../http/http";
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { getProducts } from "../store/fetchRandomProducts";
 
 export default function Hero() {
+  const dispatch = useDispatch();
   const [limit, setLimit] = useState(20);
-  const [skip, setSkip] = useState(20);
-
-  const [productsData, setProductsData] = useState([]);
-
-  const { data, isPending, isError, error } = useQuery({
-    queryKey: ["products"],
-    queryFn: ({ signal }) => fetchRandomProducts(20, 0, signal),
-  });
-
-  useEffect(() => {
-    if (data) {
-      setProductsData(data.products);
-    }
-  }, [data]);
+  // const [skip, setSkip] = useState(0);
 
   function handleLimit() {
     setLimit((prev) => prev + 10);
-    setSkip((prev) => prev + limit);
   }
 
-  async function loadMore() {
-    const newData = await fetchRandomProducts(limit, skip);
+  useEffect(() => {
+    dispatch(getProducts(10));
+  }, []);
 
-    setProductsData((prev) => [...prev, ...newData.products]);
+  const { productsData, loading } = useSelector((state) => state.products);
+
+  function loadMore() {
+    dispatch(getProducts(limit));
   }
-
-  if (isPending) return "Loading...";
-  if (isError) return <div>{error.message}</div>;
 
   console.log(productsData);
 
@@ -62,6 +50,7 @@ export default function Hero() {
             </div>
           ))}
       </div>
+      {loading}
       {productsData.length <= 100 && (
         <button
           className="show-btn"
