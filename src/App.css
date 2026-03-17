@@ -138,3 +138,8 @@ body {
 .show-btn:hover {
   background: #ddd;
 }
+
+button:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}

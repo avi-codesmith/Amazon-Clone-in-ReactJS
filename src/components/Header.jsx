@@ -1,10 +1,15 @@
 import { NavLink } from "react-router-dom";
 import "../components/header.css";
 import logo from "../asset/logo.png";
+import { useSelector } from "react-redux";
+import Loader from "./Loader";
 
 export default function Header() {
+  const { loading } = useSelector((state) => state.products);
+  console.log(loading);
   return (
     <>
+      {loading && <Loader />}
       <header className="header">
         <div className="logo">
           <img src={logo} alt="logo" />

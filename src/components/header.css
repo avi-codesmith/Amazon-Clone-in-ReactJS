@@ -10,6 +10,9 @@
   padding: 10px 20px;
   gap: 20px;
   flex-wrap: wrap;
+  position: sticky;
+  top: 0;
+  z-index: 999;
 }
 
 .logo img {

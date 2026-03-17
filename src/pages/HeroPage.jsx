@@ -21,8 +21,6 @@ export default function Hero() {
     dispatch(getProducts(limit));
   }
 
-  console.log(productsData);
-
   return (
     <section className="hero">
       <h1>Explore Our products</h1>
@@ -50,16 +48,16 @@ export default function Hero() {
             </div>
           ))}
       </div>
-      {loading}
-      {productsData.length <= 100 && (
+      {productsData.length > 0 && productsData.length <= 100 && (
         <button
+          disabled={loading}
           className="show-btn"
           onClick={() => {
             loadMore();
             handleLimit();
           }}
         >
-          Show More
+          {loading ? "Loading..." : "Show More"}
         </button>
       )}
     </section>
