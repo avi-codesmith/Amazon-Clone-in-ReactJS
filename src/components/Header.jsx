@@ -2,11 +2,34 @@ import { NavLink } from "react-router-dom";
 import "../components/header.css";
 import logo from "../asset/logo.png";
 import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import Loader from "./Loader";
+import { useEffect } from "react";
+import { getCategories } from "../store/fetchCategories";
 
 export default function Header() {
+  const dispatch = useDispatch();
   const { loading } = useSelector((state) => state.products);
-  console.log(loading);
+  const {
+    categories,
+    loading: categoryLoading,
+    error,
+  } = useSelector((state) => state.categories);
+
+  useEffect(() => {
+    dispatch(getCategories());
+  }, []);
+
+  let content;
+
+  if (categoryLoading) {
+    content = "Loading... pls wait";
+  }
+
+  if (error) {
+    content = "An error occured! cant fetch categories";
+  }
+
   return (
     <>
       {loading && <Loader />}
@@ -36,17 +59,12 @@ export default function Header() {
       </header>
       <header className="product-list">
         <ul>
-          <li></li>
-          <li></li>
-          <li></li>
-          <li></li>
-          <li></li>
-          <li></li>
-          <li></li>
-          <li></li>
-          <li></li>
-          <li></li>
-          <li></li>
+          <p>{content}</p>
+          {categories.map((category) => (
+            <li key={category} id={category}>
+              {category}
+            </li>
+          ))}
         </ul>
       </header>
     </>

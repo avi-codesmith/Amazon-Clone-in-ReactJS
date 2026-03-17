@@ -1,21 +1,17 @@
-import {
-  createSlice,
-  createAsyncThunk,
-  configureStore,
-} from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { fetchRandomProducts } from "../http/http";
 
-const initialState = { productsData: [], loading: false, error: "" };
+const initialState = { productsData: [], loading: false, error: false };
 
 export const getProducts = createAsyncThunk(
   "products/getProducts",
   async function (limit) {
-    const data = fetchRandomProducts(limit);
+    const data = await fetchRandomProducts(limit);
     return data;
   },
 );
 
-const fetchRandomProductsSlice = createSlice({
+export const fetchRandomProductsSlice = createSlice({
   name: "fetchRandomProducts",
   initialState,
   extraReducers: (builder) => {
@@ -29,13 +25,7 @@ const fetchRandomProductsSlice = createSlice({
       })
       .addCase(getProducts.rejected, (state) => {
         state.loading = false;
-        state.error = "Ops! something went wrong";
+        state.error = true;
       });
-  },
-});
-
-export const store = configureStore({
-  reducer: {
-    products: fetchRandomProductsSlice.reducer,
   },
 });

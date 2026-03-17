@@ -14,10 +14,9 @@
 
 // `https://dummyjson.com/products/category/smartphones`
 
-export async function fetchRandomProducts(limit, signal) {
+export async function fetchRandomProducts(limit) {
   const response = await fetch(
     `https://dummyjson.com/products/search?q=&limit=${limit}`,
-    signal,
   );
 
   if (!response.ok) {
@@ -29,10 +28,9 @@ export async function fetchRandomProducts(limit, signal) {
   return data;
 }
 
-export async function fetchProductsByCategories(limit, signal, category) {
+export async function fetchProductsByCategories(limit, category) {
   const response = await fetch(
     `https://dummyjson.com/products/category/${category}?limit=${limit}`,
-    signal,
   );
 
   if (!response.ok) {
@@ -46,11 +44,8 @@ export async function fetchProductsByCategories(limit, signal, category) {
   return data;
 }
 
-export async function fetchCategories(signal) {
-  const response = await fetch(
-    `https://dummyjson.com/products/category-list`,
-    signal,
-  );
+export async function fetchCategories() {
+  const response = await fetch(`https://dummyjson.com/products/category-list`);
 
   if (!response.ok) {
     const error = new Error("Something went wrong, Can't fetch categories");
