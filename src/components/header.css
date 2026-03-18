@@ -142,3 +142,7 @@
 .product-list ul p {
   color: #fff;
 }
+
+.disabled {
+  pointer-events: none;
+}

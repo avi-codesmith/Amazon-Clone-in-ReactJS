@@ -28,7 +28,7 @@ export async function fetchRandomProducts(limit) {
   return data;
 }
 
-export async function fetchProductsByCategories(limit, category) {
+export async function fetchProductsByCategories(category, limit) {
   const response = await fetch(
     `https://dummyjson.com/products/category/${category}?limit=${limit}`,
   );

@@ -6,10 +6,15 @@ import { useDispatch } from "react-redux";
 import Loader from "./Loader";
 import { useEffect } from "react";
 import { getCategories } from "../store/fetchCategories";
+import { getProductsByCategory } from "../store/fetchProductByCategories";
 
 export default function Header() {
   const dispatch = useDispatch();
   const { loading } = useSelector((state) => state.products);
+  const { loading: productsByCategoryLoading } = useSelector(
+    (state) => state.productsByCategory,
+  );
+
   const {
     categories,
     loading: categoryLoading,
@@ -30,9 +35,16 @@ export default function Header() {
     content = "An error occured! cant fetch categories";
   }
 
+  function handleCategoryName(category) {
+    let id = category;
+    dispatch(getProductsByCategory({ category: id, limit: 10 }));
+  }
+
+  console.log(productsByCategoryLoading);
+
   return (
     <>
-      {loading && <Loader />}
+      {(loading || productsByCategoryLoading || categoryLoading) && <Loader />}
       <header className="header">
         <div className="logo">
           <img src={logo} alt="logo" />
@@ -61,7 +73,12 @@ export default function Header() {
         <ul>
           <p>{content}</p>
           {categories.map((category) => (
-            <li key={category} id={category}>
+            <li
+              key={category}
+              id={category}
+              onClick={() => handleCategoryName(category)}
+              className={productsByCategoryLoading && "disabled"}
+            >
               {category}
             </li>
           ))}
