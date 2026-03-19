@@ -2,10 +2,10 @@ import { Outlet } from "react-router-dom";
 import Header from "./Header";
 import Footer from "./Footer";
 
-export default function Root() {
+export default function Root({ reload }) {
   return (
     <>
-      <Header />
+      <Header reload={reload} />
       <main>
         <Outlet />
       </main>

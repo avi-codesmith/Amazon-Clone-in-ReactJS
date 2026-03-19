@@ -10,8 +10,12 @@ const initialState = {
 
 export const getProductsByCategory = createAsyncThunk(
   "getProductsByCategory",
-  async ({ category, limit }) => {
-    const data = await fetchProductsByCategories(category, limit);
+  async ({ category }) => {
+    let categoryName;
+    if (category) {
+      categoryName = category;
+    }
+    const data = await fetchProductsByCategories(categoryName);
     return data;
   },
 );

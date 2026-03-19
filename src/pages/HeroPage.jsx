@@ -3,8 +3,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { getProducts } from "../store/fetchRandomProducts";
 import { useLimit } from "../hooks/useLimit";
 import ShowMoreBtn from "../components/ShowmoreBtn";
+import { Link, Outlet } from "react-router-dom";
 
-export default function Hero() {
+export default function Hero({ reload }) {
   const dispatch = useDispatch();
   const { limit, handleLimit } = useLimit();
   const { productsData, loading } = useSelector((state) => state.products);
@@ -15,61 +16,61 @@ export default function Hero() {
   const [append, setAppend] = useState([]);
   // const [skip, setSkip] = useState(0);
 
-  console.log(limit);
-
   useEffect(() => {
     dispatch(getProducts(limit));
-  }, [limit]);
+  }, [limit, reload]);
 
   useEffect(() => {
     if (productsData?.length > 0) {
       setAppend(productsData);
     }
-  }, [productsData, limit]);
+  }, [productsData]);
 
   useEffect(() => {
-    if (categoryLoading) {
+    if (categoryLoading || loading) {
       setAppend([]);
     }
-  }, [categories, limit]);
+  }, [categories]);
 
   useEffect(() => {
     if (categories.length > 0) {
       setAppend(categories);
-      console.log(categories);
     }
-  }, [categories, limit]);
+  }, [categories]);
 
   return (
-    <section className="hero">
-      <h1>Explore Our products</h1>
-      <div className="products">
-        {append.length > 0 &&
-          append.map((products) => (
-            <div className="product" key={products.id}>
+    <div className="products">
+      {append.length > 0 &&
+        append.map((product) => (
+          <Link
+            to={`/productDetail/${product.id}`}
+            key={product.id}
+            className="product-link"
+          >
+            <div className="product">
               <div className="product-image">
-                <img src={products.images[0]} alt={products.title} />
+                <img src={product.images[0]} alt={product.title} />
               </div>
-              <h1 className="product-title">{products.title}</h1>
-              <h2 className="product-price">$ {products.price}</h2>
+              <h1 className="product-title">{product.title}</h1>
+              <h2 className="product-price">$ {product.price}</h2>
+
               <div className="rating">
                 <p className="star">
-                  {"★".repeat(Math.round(products.rating))}
-                  {"☆".repeat(5 - Math.round(products.rating))}
+                  {"★".repeat(Math.round(product.rating))}
+                  {"☆".repeat(5 - Math.round(product.rating))}
                 </p>
               </div>
+
               <div className="tags">
-                {products.tags.map((tag) => (
+                {product.tags.map((tag) => (
                   <p key={tag}>{tag}</p>
                 ))}
               </div>
-              <p className="description">{products.description}</p>
+
+              <p className="description">{product.description}</p>
             </div>
-          ))}
-      </div>
-      {productsData.length > 0 && productsData.length <= 100 && (
-        <ShowMoreBtn loadingState={loading} handleLimit={handleLimit} />
-      )}
-    </section>
+          </Link>
+        ))}
+    </div>
   );
 }

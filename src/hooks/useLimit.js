@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 export function useLimit() {
-  const [limit, setLimit] = useState(10);
+  const [limit, setLimit] = useState(12);
   function handleLimit() {
     setLimit((prev) => prev + 10);
   }

@@ -4,7 +4,7 @@ import logo from "../asset/logo.png";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import Loader from "./Loader";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { getCategories } from "../store/fetchCategories";
 import { getProductsByCategory } from "../store/fetchProductByCategories";
 import { useLimit } from "../hooks/useLimit";
@@ -12,6 +12,7 @@ import { useLimit } from "../hooks/useLimit";
 export default function Header() {
   const { limit } = useLimit();
   const dispatch = useDispatch();
+  const [categoryName, setCategoryName] = useState("");
   const { loading } = useSelector((state) => state.products);
   const { loading: productsByCategoryLoading } = useSelector(
     (state) => state.productsByCategory,
@@ -38,11 +39,12 @@ export default function Header() {
   }
 
   function handleCategoryName(category) {
-    let id = category;
-    dispatch(getProductsByCategory({ category: id, limit }));
+    setCategoryName(category);
   }
 
-  console.log(productsByCategoryLoading);
+  useEffect(() => {
+    dispatch(getProductsByCategory({ category: categoryName, limit }));
+  }, [categoryName]);
 
   return (
     <>
