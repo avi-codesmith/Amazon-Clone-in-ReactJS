@@ -7,8 +7,10 @@ import Loader from "./Loader";
 import { useEffect } from "react";
 import { getCategories } from "../store/fetchCategories";
 import { getProductsByCategory } from "../store/fetchProductByCategories";
+import { useLimit } from "../hooks/useLimit";
 
 export default function Header() {
+  const { limit } = useLimit();
   const dispatch = useDispatch();
   const { loading } = useSelector((state) => state.products);
   const { loading: productsByCategoryLoading } = useSelector(
@@ -37,7 +39,7 @@ export default function Header() {
 
   function handleCategoryName(category) {
     let id = category;
-    dispatch(getProductsByCategory({ category: id, limit: 10 }));
+    dispatch(getProductsByCategory({ category: id, limit }));
   }
 
   console.log(productsByCategoryLoading);
@@ -77,7 +79,7 @@ export default function Header() {
               key={category}
               id={category}
               onClick={() => handleCategoryName(category)}
-              className={productsByCategoryLoading && "disabled"}
+              className={productsByCategoryLoading ? "disabled" : undefined}
             >
               {category}
             </li>

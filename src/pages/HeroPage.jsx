@@ -1,51 +1,44 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getProducts } from "../store/fetchRandomProducts";
+import { useLimit } from "../hooks/useLimit";
+import ShowMoreBtn from "../components/ShowmoreBtn";
 
 export default function Hero() {
   const dispatch = useDispatch();
+  const { limit, handleLimit } = useLimit();
   const { productsData, loading } = useSelector((state) => state.products);
   const { categories, loading: categoryLoading } = useSelector(
     (state) => state.productsByCategory,
   );
-  const [limit, setLimit] = useState(20);
+
   const [append, setAppend] = useState([]);
   // const [skip, setSkip] = useState(0);
 
-  function handleLimit() {
-    setLimit((prev) => prev + 10);
-  }
+  console.log(limit);
 
   useEffect(() => {
-    dispatch(getProducts(10));
-  }, []);
+    dispatch(getProducts(limit));
+  }, [limit]);
 
   useEffect(() => {
     if (productsData?.length > 0) {
       setAppend(productsData);
     }
-  }, [productsData]);
+  }, [productsData, limit]);
 
   useEffect(() => {
     if (categoryLoading) {
       setAppend([]);
     }
-  }, [categories]);
+  }, [categories, limit]);
 
   useEffect(() => {
     if (categories.length > 0) {
       setAppend(categories);
       console.log(categories);
     }
-  }, [categories]);
-
-  useEffect(() => {
-    console.log("categories:", categories);
-  }, [categories]);
-
-  function loadMore() {
-    dispatch(getProducts(limit));
-  }
+  }, [categories, limit]);
 
   return (
     <section className="hero">
@@ -75,16 +68,7 @@ export default function Hero() {
           ))}
       </div>
       {productsData.length > 0 && productsData.length <= 100 && (
-        <button
-          disabled={loading}
-          className="show-btn"
-          onClick={() => {
-            loadMore();
-            handleLimit();
-          }}
-        >
-          {loading ? "Loading..." : "Show More"}
-        </button>
+        <ShowMoreBtn loadingState={loading} handleLimit={handleLimit} />
       )}
     </section>
   );
