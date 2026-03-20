@@ -17,7 +17,6 @@ export default function Header() {
   const { loading: productsByCategoryLoading } = useSelector(
     (state) => state.productsByCategory,
   );
-
   const {
     categories,
     loading: categoryLoading,
@@ -77,17 +76,15 @@ export default function Header() {
         <ul>
           <p>{content}</p>
           {categories.map((category) => (
-            <li key={category}>
-              <Link
-                to={`category/${category}`}
-                key={category}
-                id={category}
-                onClick={() => handleCategoryName(category)}
-                className={productsByCategoryLoading ? "disabled" : undefined}
-              >
-                {category}
-              </Link>
-            </li>
+            <Link
+              to={`category/${category}`}
+              key={category}
+              id={category}
+              onClick={() => handleCategoryName(category)}
+              className={productsByCategoryLoading ? "disabled" : undefined}
+            >
+              <li key={category}>{category}</li>
+            </Link>
           ))}
         </ul>
       </header>

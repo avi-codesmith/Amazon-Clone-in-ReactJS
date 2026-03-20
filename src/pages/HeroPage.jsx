@@ -4,7 +4,7 @@ import { getProducts } from "../store/fetchRandomProducts";
 import { useLimit } from "../hooks/useLimit";
 import Products from "../components/Products";
 import ShowMoreBtn from "../components/ShowmoreBtn";
-import { Link, Outlet } from "react-router-dom";
+// import { Link, Outlet } from "react-router-dom";
 
 export default function Hero({ reload }) {
   const dispatch = useDispatch();
@@ -14,7 +14,7 @@ export default function Hero({ reload }) {
   //   (state) => state.productsByCategory,
   // );
 
-  const [append, setAppend] = useState([]);
+  // const [append, setAppend] = useState([]);
   // const [skip, setSkip] = useState(0);
 
   useEffect(() => {
@@ -39,5 +39,5 @@ export default function Hero({ reload }) {
   //   }
   // }, [categories]);
 
-  return <Products append={productsData} />;
+  return <Products append={productsData} heading={"Explore our products"} />;
 }
