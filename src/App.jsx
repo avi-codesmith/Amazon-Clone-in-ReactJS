@@ -4,6 +4,7 @@ import Root from "./components/Root";
 import Hero from "./pages/HeroPage";
 import ProductDetail from "./pages/ProductDetail";
 import ProductCategory from "./pages/ProductCategory";
+import SearchedProducts from "./pages/SearchedProducts";
 export default function App() {
   const query = new QueryClient();
 
@@ -23,6 +24,10 @@ export default function App() {
         {
           path: "category/:category",
           element: <ProductCategory />,
+        },
+        {
+          path: "search",
+          element: <SearchedProducts />,
         },
       ],
     },

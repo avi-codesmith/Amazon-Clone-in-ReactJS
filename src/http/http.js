@@ -67,3 +67,19 @@ export async function fetchProductDetail(params) {
   const data = await response.json();
   return data;
 }
+
+export async function fetchProductBySearch(searchedValue) {
+  const response = await fetch(
+    `https://dummyjson.com/products/search?q=${searchedValue}`,
+  );
+
+  if (!response.ok) {
+    const error = new Error(
+      "Something went wrong, Can't fetch products regarding to that search",
+    );
+    return error;
+  }
+
+  const data = await response.json();
+  return data;
+}

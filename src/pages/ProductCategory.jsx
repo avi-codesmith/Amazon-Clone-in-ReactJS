@@ -1,8 +1,11 @@
-import Products from "../components/Products";
-import { useSelector } from "react-redux";
 import { useEffect } from "react";
+import Products from "../components/Products";
+import { useDispatch, useSelector } from "react-redux";
+import { getProducts } from "../store/fetchRandomProducts";
+// import { useEffect } from "react";
 
 export default function ProductCategory() {
+  const dispatch = useDispatch();
   const { categories, loading: categoryLoading } = useSelector(
     (state) => state.productsByCategory,
   );
@@ -19,6 +22,9 @@ export default function ProductCategory() {
   //     setAppend([]);
   //   }
   // }, [categories]);
+  useEffect(() => {
+    dispatch(getProducts(20));
+  }, []);
 
   return (
     <>

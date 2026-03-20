@@ -3,6 +3,7 @@ import { fetchRandomProductsSlice } from "./fetchRandomProducts";
 import { fetchProductsByCategoriesSlice } from "./fetchProductByCategories";
 import { configureStore } from "@reduxjs/toolkit";
 import { productDetailSlice } from "./fetchProductDetail";
+import { ProductBySearchSlice } from "./fetchProductsBySearch";
 
 export const store = configureStore({
   reducer: {
@@ -10,5 +11,6 @@ export const store = configureStore({
     categories: fetchCategorySlice.reducer,
     productsByCategory: fetchProductsByCategoriesSlice.reducer,
     getproductDetail: productDetailSlice.reducer,
+    productBySearch: ProductBySearchSlice.reducer,
   },
 });

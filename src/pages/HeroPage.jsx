@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getProducts } from "../store/fetchRandomProducts";
 import { useLimit } from "../hooks/useLimit";
 import Products from "../components/Products";
-import ShowMoreBtn from "../components/ShowmoreBtn";
+// import ShowMoreBtn from "../components/ShowmoreBtn";
 // import { Link, Outlet } from "react-router-dom";
 
 export default function Hero({ reload }) {
