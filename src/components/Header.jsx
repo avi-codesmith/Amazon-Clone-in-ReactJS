@@ -1,4 +1,4 @@
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import "../components/header.css";
 import logo from "../asset/logo.png";
 import { useSelector } from "react-redux";
@@ -77,13 +77,16 @@ export default function Header() {
         <ul>
           <p>{content}</p>
           {categories.map((category) => (
-            <li
-              key={category}
-              id={category}
-              onClick={() => handleCategoryName(category)}
-              className={productsByCategoryLoading ? "disabled" : undefined}
-            >
-              {category}
+            <li key={category}>
+              <Link
+                to={`category/${category}`}
+                key={category}
+                id={category}
+                onClick={() => handleCategoryName(category)}
+                className={productsByCategoryLoading ? "disabled" : undefined}
+              >
+                {category}
+              </Link>
             </li>
           ))}
         </ul>

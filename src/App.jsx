@@ -3,6 +3,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Root from "./components/Root";
 import Hero from "./pages/HeroPage";
 import ProductDetail from "./pages/ProductDetail";
+import ProductCategory from "./pages/ProductCategory";
 export default function App() {
   const query = new QueryClient();
 
@@ -18,6 +19,10 @@ export default function App() {
         {
           path: "productDetail/:id",
           element: <ProductDetail />,
+        },
+        {
+          path: "category/:category",
+          element: <ProductCategory />,
         },
       ],
     },

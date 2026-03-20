@@ -30,7 +30,6 @@ body {
   padding: 2rem 1rem 0 1rem;
 }
 
-/* FIX: make Link behave like container if used */
 .products a {
   text-decoration: none;
   color: inherit;
@@ -151,4 +150,131 @@ body {
 button:disabled {
   cursor: not-allowed;
   opacity: 0.5;
+}
+
+/* for product detail* */
+
+.product-page {
+  background: #ffffff;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+  color: #0f1111;
+}
+
+/* Title */
+.product-title {
+  font-size: 24px;
+  font-weight: 500;
+  margin-bottom: 20px;
+}
+
+/* Main section */
+.product-main {
+  display: flex;
+  gap: 20px;
+  margin-bottom: 20px;
+}
+
+.product-thumbnail {
+  width: 250px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  object-fit: cover;
+}
+
+.product-image-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.product-images {
+  width: 60px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.product-images:hover {
+  transform: scale(1.1);
+}
+
+/* Info */
+.product-info {
+  border-top: 1px solid #e7e7e7;
+  padding-top: 10px;
+}
+
+.product-field {
+  margin: 6px 0;
+  font-size: 14px;
+}
+
+.label {
+  font-weight: bold;
+  color: #565959;
+}
+
+.value {
+  color: #0f1111;
+}
+
+/* Description */
+.product-description {
+  margin-top: 15px;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+/* Section title */
+.section-title {
+  margin-top: 20px;
+  font-size: 18px;
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 5px;
+}
+
+/* Tags */
+.tags {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.tag-item {
+  background: #f0f2f2;
+  padding: 5px 10px;
+  border-radius: 20px;
+  font-size: 12px;
+}
+
+/* Reviews */
+.reviews {
+  margin-top: 10px;
+}
+
+.review-card {
+  border: 1px solid #e7e7e7;
+  border-radius: 6px;
+  padding: 10px;
+  margin-bottom: 10px;
+  background: #fafafa;
+}
+
+.review-header {
+  display: flex;
+  justify-content: space-between;
+  font-size: 14px;
+}
+
+.rating {
+  color: #ffa41c;
+}
+
+.review-comment {
+  margin-top: 5px;
+  font-size: 13px;
 }

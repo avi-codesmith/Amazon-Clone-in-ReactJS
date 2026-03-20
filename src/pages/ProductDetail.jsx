@@ -28,35 +28,63 @@ export default function ProductDetail() {
     { label: "Status", value: productDetail.availabilityStatus },
   ];
 
+  console.log(productDetail);
+
   return (
-    <div>
-      <h1>{productDetail.title}</h1>
+    <div className="product-page">
+      <h1 className="product-title">{productDetail.title}</h1>
 
-      <img src={productDetail.thumbnail} width="250" />
+      <div className="product-main">
+        <img
+          className="product-thumbnail"
+          src={productDetail.thumbnail}
+          alt={productDetail.title}
+        />
 
-      {fields.map((item, index) => (
-        <p key={index}>
-          <b>{item.label}:</b> {item.value}
-        </p>
-      ))}
+        <div className="product-image-wrapper">
+          {productDetail.images &&
+            productDetail.images.length > 1 &&
+            productDetail.images.map((image) => (
+              <img key={image} src={image} className="product-images" />
+            ))}
+        </div>
+      </div>
 
-      <p>
-        <b>Description:</b> {productDetail.description}
+      <div className="product-info">
+        {fields.map((item, index) => (
+          <p key={index} className="product-field">
+            <span className="label">{item.label}:</span>
+            <span className="value"> {item.value}</span>
+          </p>
+        ))}
+      </div>
+
+      <p className="product-description">
+        <span className="label">Description:</span>
+        {productDetail.description}
       </p>
 
-      <h3>Tags</h3>
-      <ul>
+      <h3 className="section-title">Tags</h3>
+      <ul className="tags">
         {productDetail.tags?.map((tag, i) => (
-          <li key={i}>{tag}</li>
+          <li key={i} className="tag-item">
+            {tag}
+          </li>
         ))}
       </ul>
 
-      <h3>Reviews</h3>
-      {productDetail.reviews?.map((r, i) => (
-        <div key={i}>
-          <b>{r.reviewerName}</b> ({r.rating})<p>{r.comment}</p>
-        </div>
-      ))}
+      <h3 className="section-title">Reviews</h3>
+      <div className="reviews">
+        {productDetail.reviews?.map((r, i) => (
+          <div key={i} className="review-card">
+            <div className="review-header">
+              <b>{r.reviewerName}</b>
+              <span className="rating">⭐ {r.rating}</span>
+            </div>
+            <p className="review-comment">{r.comment}</p>
+          </div>
+        ))}
+      </div>
     </div>
   );
 }
