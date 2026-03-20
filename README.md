@@ -1,16 +1,37 @@
-# React + Vite
+# 🛒 Amazon Clone (React + RTK + ReactRouter)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+> 🟢 **Work in Progress**
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## 📌 Overview
+A modern Amazon-like e-commerce frontend built using **React, Redux Toolkit, and React Router**.  
+This project focuses on scalable architecture, clean state management, and real-world features.
 
-## React Compiler
+---
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## ⚡ Screenshots
 
-## Expanding the ESLint configuration
+<img width="3040" height="1552" alt="image" src="https://github.com/user-attachments/assets/d2e2a707-514a-47ac-b100-a18223599de7" />
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+
+## 🚀 Features
+
+- 🔍 Search Products (URL-based query)
+- 🧭 Category-wise Product Filtering
+- 📦 Product Detail Page
+- 🛒 Add to Cart (UI ready)
+- 🔐 Login & Signup (UI ready)
+- 💳 Checkout Form (basic structure)
+- ⚡ Dynamic Routing
+- 🔄 API-based Data Fetching
+
+---
+
+## 🧠 Tech Stack
+
+- **React JS**
+- **Redux Toolkit**
+- **React Router DOM**
+- **JS es6+**
+- **CSS 3**
