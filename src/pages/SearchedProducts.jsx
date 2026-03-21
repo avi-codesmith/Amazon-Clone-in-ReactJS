@@ -28,9 +28,9 @@ export default function SearchedProducts() {
       <Products
         append={SearchedProducts}
         heading={
-          SearchedProducts.length == 0
+          SearchedProducts.length <= 0
             ? "Can't find anything related to your search"
-            : "Your Search"
+            : `Explore ${query}`
         }
       />
       <Products append={productsData} heading={"Explore other products"} />

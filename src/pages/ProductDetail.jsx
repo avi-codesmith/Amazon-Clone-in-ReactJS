@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { getproductDetail } from "../store/fetchProductDetail";
 import Products from "../components/Products";
 import { getProducts } from "../store/fetchRandomProducts";
+import { cartActions } from "../store/cartSlice";
 
 export default function ProductDetail() {
   const { productDetail, loading, error } = useSelector(
@@ -28,6 +29,11 @@ export default function ProductDetail() {
 
   function handleSrc(image) {
     setImgSrc(image);
+  }
+
+  function handleAddToCart(id) {
+    dispatch(cartActions.addToCart(id));
+    console.log("done!!");
   }
 
   return (
@@ -59,7 +65,7 @@ export default function ProductDetail() {
             <h1 className="product-title">{productDetail.title}</h1>
             <p className="description-d">
               {productDetail.description} A quality Product By{" "}
-              <strong>{productDetail.brand}</strong>
+              <strong>{productDetail.brand || "Amazon"}</strong>
             </p>
 
             <div className="product-info">
@@ -97,7 +103,7 @@ export default function ProductDetail() {
                   <p>{productDetail.returnPolicy}</p>
                 </div>
               )}
-              {productDetail.warrantyInformation && (
+              {productDetail.warrantyInformation !== "No warranty" && (
                 <div className="feture-box">
                   <h3>Warranty is available</h3>
                   <p>{productDetail.warrantyInformation}</p>
@@ -111,7 +117,12 @@ export default function ProductDetail() {
               )}
             </div>
             <div className="action">
-              <button className="btn light">Add to Cart</button>
+              <button
+                className="btn light"
+                onClick={() => handleAddToCart(productDetail.id)}
+              >
+                Add to Cart
+              </button>
               <button className="btn">Buy Now</button>
             </div>
           </div>

@@ -2,10 +2,12 @@ import { useEffect } from "react";
 import Products from "../components/Products";
 import { useDispatch, useSelector } from "react-redux";
 import { getProducts } from "../store/fetchRandomProducts";
+import { useParams } from "react-router-dom";
 // import { useEffect } from "react";
 
 export default function ProductCategory() {
   const dispatch = useDispatch();
+  const { category } = useParams();
   const { categories, loading: categoryLoading } = useSelector(
     (state) => state.productsByCategory,
   );
@@ -28,7 +30,10 @@ export default function ProductCategory() {
 
   return (
     <>
-      <Products append={categories} heading={"Explore products"} />
+      <Products
+        append={categories}
+        heading={`Explore ${category}` || "Explore Products"}
+      />
       <Products append={productsData} heading={"Explore more"} />
     </>
   );
