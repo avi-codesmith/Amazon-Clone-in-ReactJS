@@ -16,8 +16,8 @@ export const cartSlice = createSlice({
           id: action.payload,
         });
       } else {
-        const data = state.cartItems[Number(existingProductIndex)].quantity++;
-        console.log(data);
+        const data = state.cartItems[existingProductIndex].quantity++;
+        console.log(state.cartItems[0]);
       }
       console.log(state.cartItems + "array products");
       console.log(action.payload + "action payload");

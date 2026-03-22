@@ -1,6 +1,7 @@
 import { Link, NavLink, useNavigate, useParams } from "react-router-dom";
 import "../components/header.css";
 import logo from "../asset/logo.png";
+import cart from "../asset/cart.svg";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import Loader from "./Loader";
@@ -35,7 +36,7 @@ export default function Header() {
     navigate(`/search?q=${inputValue}`);
     if (!inputValue.trim()) return;
     dispatch(getProductBySearch(inputValue));
-    // setInputValue("");
+    setInputValue("");
   }
 
   useEffect(() => {
@@ -94,8 +95,12 @@ export default function Header() {
             Signup
           </NavLink>
 
-          <NavLink to="/" className="nav-item cart">
-            🛒 Cart
+          <NavLink to="cart" className="nav-item cart">
+            <div className="cartWrapper">
+              <img src={cart} alt="cart" />
+              <span className="cartNumber">1</span>
+            </div>
+            <p>Cart</p>
           </NavLink>
         </nav>
       </header>

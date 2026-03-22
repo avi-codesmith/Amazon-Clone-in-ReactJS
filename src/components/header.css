@@ -146,3 +146,28 @@
 .disabled {
   pointer-events: none;
 }
+
+.cart {
+  display: flex;
+  align-items: center;
+}
+
+.cartWrapper {
+  position: relative;
+  display: inline-block;
+}
+
+.cartWrapper img {
+  width: 32px;
+  height: 32px;
+}
+
+.cartNumber {
+  position: absolute;
+  top: -1px;
+  right: 8px;
+  background: transparent;
+  color: #fa8900;
+  font-size: 0.8rem;
+  font-weight: bold;
+}

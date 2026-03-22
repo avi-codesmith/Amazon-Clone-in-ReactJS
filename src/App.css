@@ -1,3 +1,5 @@
+@import url("https://fonts.cdnfonts.com/css/amazon-ember");
+
 * {
   margin: 0;
   padding: 0;
@@ -5,7 +7,7 @@
 }
 
 body {
-  font-family: "Courier New", Courier, monospace;
+  font-family: "Amazon Ember", sans-serif;
   background-color: #eaeded;
 }
 
@@ -370,7 +372,6 @@ button:disabled {
   margin-top: 2rem;
 }
 
-/* base button */
 .btn {
   width: 160px;
   border: none;
@@ -382,7 +383,6 @@ button:disabled {
   transition: 0.2s ease;
 }
 
-/* add to cart (yellow) */
 .btn.light {
   background: #ffd814;
   color: #111;
@@ -416,3 +416,5 @@ button:disabled {
 .none {
   border: none;
 }
+
+/* for cart */

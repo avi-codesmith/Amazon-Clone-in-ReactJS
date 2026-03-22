@@ -5,6 +5,7 @@ import Hero from "./pages/HeroPage";
 import ProductDetail from "./pages/ProductDetail";
 import ProductCategory from "./pages/ProductCategory";
 import SearchedProducts from "./pages/SearchedProducts";
+import Cart from "./pages/Cart";
 export default function App() {
   const query = new QueryClient();
 
@@ -28,6 +29,10 @@ export default function App() {
         {
           path: "search",
           element: <SearchedProducts />,
+        },
+        {
+          path: "cart",
+          element: <Cart />,
         },
       ],
     },
