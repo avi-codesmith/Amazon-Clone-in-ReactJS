@@ -21,6 +21,7 @@ export default function Header() {
   const { loading: productsByCategoryLoading } = useSelector(
     (state) => state.productsByCategory,
   );
+  const { totalQuantity } = useSelector((state) => state.cartProducts);
 
   const {
     categories,
@@ -98,7 +99,7 @@ export default function Header() {
           <NavLink to="cart" className="nav-item cart">
             <div className="cartWrapper">
               <img src={cart} alt="cart" />
-              <span className="cartNumber">1</span>
+              <span className="cartNumber">{totalQuantity}</span>
             </div>
             <p>Cart</p>
           </NavLink>

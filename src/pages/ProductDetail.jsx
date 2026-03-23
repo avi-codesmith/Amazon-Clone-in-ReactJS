@@ -31,8 +31,8 @@ export default function ProductDetail() {
     setImgSrc(image);
   }
 
-  function handleAddToCart(id) {
-    dispatch(cartActions.addToCart(id));
+  function handleAddToCart(id, title, img, price, description) {
+    dispatch(cartActions.addToCart({ id, title, img, price, description }));
     console.log("done!!");
   }
 
@@ -119,7 +119,15 @@ export default function ProductDetail() {
             <div className="action">
               <button
                 className="btn light"
-                onClick={() => handleAddToCart(productDetail.id)}
+                onClick={() =>
+                  handleAddToCart(
+                    productDetail.id,
+                    productDetail.title,
+                    productDetail.thumbnail,
+                    productDetail.price,
+                    productDetail.description,
+                  )
+                }
               >
                 Add to Cart
               </button>

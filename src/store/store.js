@@ -13,6 +13,6 @@ export const store = configureStore({
     productsByCategory: fetchProductsByCategoriesSlice.reducer,
     getproductDetail: productDetailSlice.reducer,
     productBySearch: ProductBySearchSlice.reducer,
-    cartSlice: cartSlice.reducer,
+    cartProducts: cartSlice.reducer,
   },
 });
