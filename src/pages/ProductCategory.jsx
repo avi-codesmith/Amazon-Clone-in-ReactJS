@@ -25,7 +25,7 @@ export default function ProductCategory() {
   //   }
   // }, [categories]);
   useEffect(() => {
-    dispatch(getProducts(20));
+    dispatch(getProducts(18));
   }, []);
 
   return (

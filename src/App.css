@@ -166,7 +166,6 @@ button:disabled {
 .product-page {
   background: #eaeded;
   padding: 20px;
-  font-family: Arial, Helvetica, sans-serif;
   width: 90vw;
   margin: 0 auto;
 }
@@ -421,9 +420,7 @@ button:disabled {
 
 .cart-container {
   padding: 1rem 0 0 1rem;
-  font-family: Arial, sans-serif;
-  width: 80%;
-  border-radius: 6px;
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: start;
@@ -442,6 +439,15 @@ button:disabled {
   align-items: flex-start;
   gap: 20px;
   border-bottom: 1px solid #ddd;
+}
+
+.cart-products-w:nth-child(1) {
+  border-radius: 6px 6px 0 0;
+}
+
+.cart-products-w:last-child {
+  border-radius: 0 0 6px 6px;
+  border-bottom: none;
 }
 
 /* Image */
@@ -515,13 +521,59 @@ button:disabled {
   width: 3rem;
   text-align: center;
 }
+
 .centre {
   color: #333;
-  text-align: center;
   padding-bottom: 1rem;
+}
+
+.empty-cart-w {
+  justify-self: right;
 }
 
 .empty-cart-w img {
   height: 20rem;
   opacity: 0.5;
+}
+
+.cart-main-w {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.proceed {
+  width: 40%;
+  padding: 1rem;
+  background-color: #fff;
+  margin-right: 1rem;
+  height: fit-content;
+  border-radius: 6px;
+}
+
+.proceed h3 {
+  white-space: nowrap;
+  color: #333;
+}
+
+.cart-price {
+  margin: 4px 0;
+  color: #fa8900;
+}
+
+.buy-btn {
+  width: 100%;
+  margin: 1rem 0;
+  margin-bottom: 0;
+}
+
+.flex {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.proceed p {
+  color: #666;
+  margin: 6px 0;
 }

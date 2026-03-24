@@ -10,6 +10,9 @@ import { getCategories } from "../store/fetchCategories";
 import { getProductsByCategory } from "../store/fetchProductByCategories";
 import { useLimit } from "../hooks/useLimit";
 import { getProductBySearch } from "../store/fetchProductsBySearch";
+import searchIcon from "../asset/search.svg";
+import { Form } from "react-router-dom";
+import Skeleton from "./Skeleton";
 
 export default function Header() {
   const { category: categoryName } = useParams();
@@ -33,11 +36,19 @@ export default function Header() {
     setInputValue(value);
   }
 
-  function handleFetchSearch() {
-    navigate(`/search?q=${inputValue}`);
-    if (!inputValue.trim()) return;
-    dispatch(getProductBySearch(inputValue));
-    setInputValue("");
+  function handleFetchSearch(e) {
+    window.scrollTo({
+      top: 0,
+    });
+    e.preventDefault();
+    if (inputValue !== "") {
+      navigate(`/search?q=${inputValue}`);
+      if (!inputValue.trim()) return;
+      dispatch(getProductBySearch(inputValue));
+      setInputValue("");
+    } else {
+      window.location.reload();
+    }
   }
 
   useEffect(() => {
@@ -47,7 +58,7 @@ export default function Header() {
   let content;
 
   if (categoryLoading) {
-    content = "Loading... pls wait";
+    content = <Skeleton skeleton="category" />;
   }
 
   if (error) {
@@ -75,28 +86,43 @@ export default function Header() {
           <img src={logo} alt="logo" />
         </div>
 
-        <div className="search">
+        <Form onSubmit={(e) => handleFetchSearch(e)} className="search">
           <input
             type="search"
             placeholder="Search Amazon.in"
             value={inputValue}
             onChange={(e) => handleInput(e.target.value)}
           />
-          <button className="search-btn" onClick={handleFetchSearch}>
-            search
+          <button className="search-btn">
+            <img src={searchIcon} alt={"search"} />
           </button>
-        </div>
+        </Form>
 
         <nav className="navigation">
-          <NavLink to="/" className="nav-item">
+          <NavLink
+            to="/"
+            className={({ isActive }) =>
+              isActive ? "active nav-item" : "nav-item"
+            }
+          >
             Login
           </NavLink>
 
-          <NavLink to="/" className="nav-item">
+          <NavLink
+            to="/"
+            className={({ isActive }) =>
+              isActive ? "active nav-item" : "nav-item"
+            }
+          >
             Signup
           </NavLink>
 
-          <NavLink to="cart" className="nav-item cart">
+          <NavLink
+            to="cart"
+            className={({ isActive }) =>
+              isActive ? "active nav-item cart" : "nav-item cart"
+            }
+          >
             <div className="cartWrapper">
               <img src={cart} alt="cart" />
               <span className="cartNumber">{totalQuantity}</span>
@@ -109,14 +135,18 @@ export default function Header() {
         <ul>
           <p>{content}</p>
           {UpdatedCategoryArr.map((category) => (
-            <Link
+            <NavLink
               to={`category/${category}`}
               key={category}
               id={category}
-              className={productsByCategoryLoading ? "disabled" : undefined}
+              className={({ isActive }) =>
+                `${isActive ? "active" : ""} ${
+                  productsByCategoryLoading ? "disabled" : ""
+                }`
+              }
             >
-              <li key={category}>{category}</li>
-            </Link>
+              <li>{category}</li>
+            </NavLink>
           ))}
         </ul>
       </header>

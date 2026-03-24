@@ -1,0 +1,138 @@
+.card-wrapper {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+  gap: 14px;
+  padding: 2rem 1rem 0 1rem;
+  background-color: transparent;
+}
+
+.card {
+  background: white;
+  border-radius: 4px;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  transition:
+    transform 0.15s ease,
+    box-shadow 0.15s ease;
+  cursor: pointer;
+  height: 100%;
+}
+
+.card-img {
+  background-color: #ddd;
+  width: 100%;
+  height: 140px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 4px;
+}
+
+.card-title,
+.card-price,
+.card-rating,
+.card-des {
+  background-color: #ddd;
+  width: 8rem;
+  height: 20px;
+  margin: 2px 0;
+  border-radius: 6px;
+}
+
+.category {
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  gap: 1rem;
+}
+
+.category .box {
+  height: 25px;
+  width: 8rem;
+  background-color: #b7b7b7;
+  margin: 2px 0;
+  margin-left: 1rem;
+  border-radius: 4px;
+}
+
+.skeleton-wrapper {
+  display: flex;
+  gap: 30px;
+  margin: auto;
+  background: #fff;
+  padding: 20px;
+  align-items: flex-start;
+  width: 88.5%;
+  height: 100vh;
+  margin-top: 20px;
+}
+
+/* LEFT IMAGE */
+.skeleton-wrapper > div:first-child {
+  width: 400px;
+  height: 300px;
+  background: #ddd;
+  border-radius: 10px;
+}
+
+/* RIGHT SIDE */
+.skeleton-wrapper > div:last-child {
+  flex: 1;
+}
+
+/* ALL BLOCKS */
+.skeleton-wrapper > div:last-child > div,
+.skeleton-wrapper > div:last-child > div > div {
+  background: #ddd;
+  border-radius: 6px;
+  margin-bottom: 12px;
+}
+
+/* TITLE */
+.skeleton-wrapper > div:last-child > div:nth-child(1) {
+  height: 20px;
+  width: 60%;
+  background: #fff;
+}
+
+/* DESCRIPTION */
+.skeleton-wrapper > div:last-child > div:nth-child(2) {
+  height: 60px;
+  width: 90%;
+}
+
+/* PRICE */
+.skeleton-wrapper > div:last-child > div:nth-child(3) {
+  height: 20px;
+  width: 40%;
+}
+
+/* RATING */
+.skeleton-wrapper > div:last-child > div:nth-child(4) {
+  height: 16px;
+  width: 30%;
+}
+
+/* TAGS (2 small blocks) */
+.skeleton-wrapper > div:last-child > div:nth-child(5) {
+  display: flex;
+  gap: 10px;
+}
+
+.skeleton-wrapper > div:last-child > div:nth-child(5) > div {
+  height: 24px;
+  width: 80px;
+}
+
+/* INFO BOXES */
+.skeleton-wrapper > div:last-child > div:nth-child(6) {
+  display: flex;
+  gap: 12px;
+}
+
+.skeleton-wrapper > div:last-child > div:nth-child(6) > div {
+  height: 60px;
+  width: 150px;
+}
