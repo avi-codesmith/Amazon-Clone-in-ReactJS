@@ -1,4 +1,3 @@
-import { QueryClientProvider, QueryClient } from "@tanstack/react-query";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Root from "./components/Root";
 import Hero from "./pages/HeroPage";
@@ -6,8 +5,14 @@ import ProductDetail from "./pages/ProductDetail";
 import ProductCategory from "./pages/ProductCategory";
 import SearchedProducts from "./pages/SearchedProducts";
 import Cart from "./pages/Cart";
+import { useEffect } from "react";
+import { useSelector } from "react-redux";
 export default function App() {
-  const query = new QueryClient();
+  const cartData = useSelector((state) => state.cartProducts.cartItems);
+
+  useEffect(() => {
+    localStorage.setItem("cartData", JSON.stringify(cartData));
+  }, [cartData]);
 
   const router = createBrowserRouter([
     {
@@ -38,9 +43,5 @@ export default function App() {
     },
   ]);
 
-  return (
-    <QueryClientProvider client={query}>
-      <RouterProvider router={router} />
-    </QueryClientProvider>
-  );
+  return <RouterProvider router={router} />;
 }

@@ -10,6 +10,10 @@ export default function Cart() {
   const cartData = useSelector((state) => state.cartProducts.cartItems);
   const { productsData } = useSelector((state) => state.products);
   const totalItem = useSelector((state) => state.cartProducts.totalQuantity);
+  const subTotalPrice = cartData.reduce(
+    (acc, item) => acc + item.totalPrice,
+    0,
+  );
 
   function handleIncrement(id) {
     dispatch(cartActions.handleAddQuantity(id));
@@ -19,7 +23,7 @@ export default function Cart() {
     dispatch(cartActions.handleDecQuantity(id));
   }
 
-  console.log(cartData.length);
+  console.log(cartData);
 
   useEffect(() => {
     dispatch(getProducts(18));
@@ -80,7 +84,7 @@ export default function Cart() {
               <div className="proceed">
                 <div className="flex">
                   <h3>{`Subtotal (${totalItem} items) :`}</h3>
-                  <h4 className="cart-price">{`$ ${Math.round(totalItem)}/-`}</h4>
+                  <h4 className="cart-price">{`$ ${Math.round(subTotalPrice)}/-`}</h4>
                 </div>
                 <p>Inclusive of all taxes</p>
                 <button className="btn light buy-btn">Proceed to buy</button>

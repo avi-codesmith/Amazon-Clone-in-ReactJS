@@ -19,21 +19,21 @@ for (let i = 0; i < 20; i++) {
 }
 
 let productDetail = (
-  <div class="skeleton-wrapper">
-    <div class="left"></div>
+  <div className="skeleton-wrapper">
+    <div></div>
 
-    <div class="right">
-      <div class="title"></div>
-      <div class="desc"></div>
-      <div class="price"></div>
-      <div class="rating"></div>
+    <div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
 
-      <div class="tags">
+      <div>
         <div></div>
         <div></div>
       </div>
 
-      <div class="boxes">
+      <div>
         <div></div>
         <div></div>
       </div>

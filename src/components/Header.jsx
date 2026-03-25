@@ -133,7 +133,7 @@ export default function Header() {
       </header>
       <header className="product-list">
         <ul>
-          <p>{content}</p>
+          <div>{content}</div>
           {UpdatedCategoryArr.map((category) => (
             <NavLink
               to={`category/${category}`}
