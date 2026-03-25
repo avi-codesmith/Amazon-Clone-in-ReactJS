@@ -1,8 +1,7 @@
 # 🛒 Amazon Clone (React + RTK + ReactRouter)
 
-> 🟢 **Work in Progress**
-<br />
-> 🟢 [Live demo](https://reactjs-amazon-project.netlify.app/)
+## 🟢 **Work in Progress**
+## 🟢 [Live demo](https://reactjs-amazon-project.netlify.app/)
 
 ---
 
