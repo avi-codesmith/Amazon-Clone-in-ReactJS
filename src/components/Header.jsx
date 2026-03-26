@@ -8,7 +8,6 @@ import Loader from "./Loader";
 import { useEffect, useState } from "react";
 import { getCategories } from "../store/fetchCategories";
 import { getProductsByCategory } from "../store/fetchProductByCategories";
-import { useLimit } from "../hooks/useLimit";
 import { getProductBySearch } from "../store/fetchProductsBySearch";
 import searchIcon from "../asset/search.svg";
 import { Form } from "react-router-dom";
@@ -18,7 +17,6 @@ export default function Header() {
   const { category: categoryName } = useParams();
   const navigate = useNavigate();
   const [inputValue, setInputValue] = useState("");
-  const { limit } = useLimit();
   const dispatch = useDispatch();
   const { loading } = useSelector((state) => state.products);
   const { loading: productsByCategoryLoading } = useSelector(
@@ -67,7 +65,7 @@ export default function Header() {
 
   useEffect(() => {
     if (categoryName) {
-      dispatch(getProductsByCategory({ category: categoryName, limit }));
+      dispatch(getProductsByCategory({ category: categoryName, limit: 18 }));
     }
   }, [categoryName]);
 
@@ -82,9 +80,9 @@ export default function Header() {
     <>
       {(loading || productsByCategoryLoading || categoryLoading) && <Loader />}
       <header className="header">
-        <div className="logo">
+        <Link to="/" className="logo">
           <img src={logo} alt="logo" />
-        </div>
+        </Link>
         <nav className="navigation">
           <Form onSubmit={(e) => handleFetchSearch(e)} className="search">
             <input

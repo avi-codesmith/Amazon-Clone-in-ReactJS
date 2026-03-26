@@ -6,6 +6,7 @@ import Products from "../components/Products";
 import { getProducts } from "../store/fetchRandomProducts";
 import { cartActions } from "../store/cartSlice";
 import Skeleton from "../components/Skeleton";
+import { Link } from "react-router-dom";
 
 export default function ProductDetail() {
   const { productDetail, loading, error } = useSelector(
@@ -134,7 +135,6 @@ export default function ProductDetail() {
                 >
                   Add to Cart
                 </button>
-                <button className="btn">Buy Now</button>
               </div>
             </div>
           </div>

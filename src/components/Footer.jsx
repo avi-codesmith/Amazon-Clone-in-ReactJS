@@ -1,11 +1,17 @@
 import "./footer.css";
 
 export default function Footer() {
+  function onTop() {
+    window.scroll({
+      top: 0,
+      behavior: "smooth",
+    });
+  }
   return (
     <footer className="footer">
-      <div className="footer-top">
-        <p>Back to top</p>
-      </div>
+      <button className="footer-top" onClick={onTop}>
+        Back to top
+      </button>
 
       <div className="footer-main">
         <div className="footer-column">

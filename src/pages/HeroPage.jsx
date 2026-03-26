@@ -1,15 +1,14 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getProducts } from "../store/fetchRandomProducts";
-import { useLimit } from "../hooks/useLimit";
 import Products from "../components/Products";
+import bgImg from "../asset/bg-wrapper-2.png";
 // import ShowMoreBtn from "../components/ShowmoreBtn";
 // import { Link, Outlet } from "react-router-dom";
 
 export default function Hero({ reload }) {
   const dispatch = useDispatch();
-  const { limit, handleLimit } = useLimit();
-  const { productsData, loading } = useSelector((state) => state.products);
+  const { productsData } = useSelector((state) => state.products);
   // const { categories, loading: categoryLoading } = useSelector(
   //   (state) => state.productsByCategory,
   // );
@@ -18,8 +17,8 @@ export default function Hero({ reload }) {
   // const [skip, setSkip] = useState(0);
 
   useEffect(() => {
-    dispatch(getProducts(limit));
-  }, [limit, reload]);
+    dispatch(getProducts(18));
+  }, [reload]);
 
   // useEffect(() => {
   //   if (productsData?.length > 0) {
@@ -39,5 +38,12 @@ export default function Hero({ reload }) {
   //   }
   // }, [categories]);
 
-  return <Products append={productsData} heading={"Explore our products"} />;
+  return (
+    <>
+      <div className="hero-img-w hide">
+        <img src={bgImg} alt={"product"} />
+      </div>
+      <Products append={productsData} heading={"Explore our products"} />;
+    </>
+  );
 }

@@ -10,6 +10,8 @@
   padding: 14px;
   cursor: pointer;
   font-size: 14px;
+  width: 100%;
+  border: none;
 }
 
 .footer-top:hover {

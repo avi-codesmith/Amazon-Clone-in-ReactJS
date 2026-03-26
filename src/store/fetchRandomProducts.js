@@ -5,8 +5,8 @@ const initialState = { productsData: [], loading: false, error: false };
 
 export const getProducts = createAsyncThunk(
   "products/getProducts",
-  async function (limit) {
-    const data = await fetchRandomProducts(limit);
+  async function () {
+    const data = await fetchRandomProducts(18);
     return data;
   },
 );
