@@ -76,6 +76,12 @@ export default function Header() {
     UpdatedCategoryArr = SlicedArr;
   }
 
+  function onTop() {
+    window.scroll({
+      top: 0,
+    });
+  }
+
   return (
     <>
       {(loading || productsByCategoryLoading || categoryLoading) && <Loader />}
@@ -96,18 +102,20 @@ export default function Header() {
             </button>
           </Form>
 
-          <NavLink
-            to="cart"
-            className={({ isActive }) =>
-              isActive ? "active nav-item cart" : "nav-item cart"
-            }
-          >
-            <div className="cartWrapper">
-              <img src={cart} alt="cart" />
-              <span className="cartNumber">{totalQuantity}</span>
-            </div>
-            <p className="hide pd">Cart</p>
-          </NavLink>
+          <button className="n-btn" onClick={onTop}>
+            <NavLink
+              to="cart"
+              className={({ isActive }) =>
+                isActive ? "active nav-item cart" : "nav-item cart"
+              }
+            >
+              <div className="cartWrapper">
+                <img src={cart} alt="cart" />
+                <span className="cartNumber">{totalQuantity}</span>
+              </div>
+              <p className="hide pd">Cart</p>
+            </NavLink>
+          </button>
         </nav>
       </header>
       <header className="product-list">
