@@ -63,8 +63,11 @@ input[type="search"]::-webkit-search-cancel-button {
   text-decoration: none;
   color: white;
   font-size: 14px;
-  padding: 6px 8px;
   border-radius: 2px;
+}
+
+.pd {
+  padding-right: 8px;
 }
 
 .nav-item:hover {
@@ -81,17 +84,17 @@ input[type="search"]::-webkit-search-cancel-button {
 }
 
 @media (max-width: 768px) {
+  .hide {
+    display: none;
+  }
+
   .header {
     flex-direction: column;
     align-items: stretch;
+    gap: 2px;
   }
 
   .search {
-    width: 100%;
-  }
-
-  .navigation {
-    justify-content: center;
     width: 100%;
   }
 }

@@ -7,6 +7,7 @@ import SearchedProducts from "./pages/SearchedProducts";
 import Cart from "./pages/Cart";
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
+import Checkout, { checkoutAction } from "./pages/CheckoutPage";
 export default function App() {
   const cartData = useSelector((state) => state.cartProducts.cartItems);
 
@@ -38,6 +39,11 @@ export default function App() {
         {
           path: "cart",
           element: <Cart />,
+        },
+        {
+          path: "checkout",
+          element: <Checkout />,
+          action: checkoutAction,
         },
       ],
     },

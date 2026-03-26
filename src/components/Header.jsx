@@ -85,37 +85,18 @@ export default function Header() {
         <div className="logo">
           <img src={logo} alt="logo" />
         </div>
-
-        <Form onSubmit={(e) => handleFetchSearch(e)} className="search">
-          <input
-            type="search"
-            placeholder="Search Amazon.in"
-            value={inputValue}
-            onChange={(e) => handleInput(e.target.value)}
-          />
-          <button className="search-btn">
-            <img src={searchIcon} alt={"search"} />
-          </button>
-        </Form>
-
         <nav className="navigation">
-          <NavLink
-            to="/"
-            className={({ isActive }) =>
-              isActive ? "active nav-item" : "nav-item"
-            }
-          >
-            Login
-          </NavLink>
-
-          <NavLink
-            to="/"
-            className={({ isActive }) =>
-              isActive ? "active nav-item" : "nav-item"
-            }
-          >
-            Signup
-          </NavLink>
+          <Form onSubmit={(e) => handleFetchSearch(e)} className="search">
+            <input
+              type="search"
+              placeholder="Search Amazon"
+              value={inputValue}
+              onChange={(e) => handleInput(e.target.value)}
+            />
+            <button className="search-btn">
+              <img src={searchIcon} alt={"search"} />
+            </button>
+          </Form>
 
           <NavLink
             to="cart"
@@ -127,7 +108,7 @@ export default function Header() {
               <img src={cart} alt="cart" />
               <span className="cartNumber">{totalQuantity}</span>
             </div>
-            <p>Cart</p>
+            <p className="hide pd">Cart</p>
           </NavLink>
         </nav>
       </header>

@@ -11,7 +11,7 @@ body {
   background-color: #eaeded;
 }
 
-/* for HeroPage */
+/* for HeroPage ****************************************************************************************/
 .hero {
   /* background: #eaeded; */
   padding: 20px 24px;
@@ -162,6 +162,8 @@ button:disabled {
   cursor: not-allowed;
   opacity: 0.5;
 }
+
+/* for products details****************************************************************************************************************************** */
 
 .product-page {
   background: #eaeded;
@@ -336,6 +338,11 @@ button:disabled {
   margin: auto;
   display: flex;
   gap: 12px;
+  overflow-x: scroll;
+}
+
+.reviews::-webkit-scrollbar {
+  display: none;
 }
 
 .review-card {
@@ -382,9 +389,13 @@ button:disabled {
   transition: 0.2s ease;
 }
 
+.btn a {
+  text-decoration: none;
+  color: #111;
+}
+
 .btn.light {
   background: #ffd814;
-  color: #111;
 }
 
 .btn.light:hover {
@@ -416,7 +427,139 @@ button:disabled {
   border: none;
 }
 
-/* for cart */
+/* ================= RESPONSIVE ================= */
+
+/* Tablet */
+@media (max-width: 1024px) {
+  .product-image-wrapper {
+    flex-direction: row;
+  }
+
+  .product-w {
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+  }
+
+  .product-main {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .product-thumbnail {
+    width: 300px;
+    height: 300px;
+  }
+
+  .product-title,
+  .description,
+  .product-info,
+  .tags,
+  .limitedTime,
+  .boxes {
+    max-width: 100%;
+  }
+
+  .boxes {
+    flex-wrap: wrap;
+  }
+
+  .feture-box {
+    width: 48%;
+  }
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+  .product-page {
+    width: 100%;
+    padding: 10px;
+  }
+
+  .product-w {
+    padding: 12px;
+  }
+
+  /* thumbnails horizontal instead of vertical */
+  .product-image-wrapper {
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .product-images {
+    width: 60px;
+    height: 60px;
+  }
+
+  .product-thumbnail {
+    width: 220px;
+    height: 220px;
+  }
+
+  .product-title {
+    font-size: 13px;
+  }
+
+  .description-d {
+    font-size: 15px;
+  }
+
+  .price p:first-child {
+    font-size: 16px;
+  }
+
+  .product-price {
+    font-size: 18px;
+  }
+
+  /* stack boxes */
+  .boxes {
+    flex-direction: column;
+  }
+
+  .feture-box {
+    width: 100%;
+  }
+
+  /* reviews */
+  .reviews {
+    flex-direction: column;
+  }
+
+  .review-card {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  /* buttons full width */
+  .action {
+    flex-direction: column;
+  }
+
+  .btn {
+    width: 100%;
+  }
+
+  .section-title {
+    font-size: 16px;
+  }
+}
+
+/* Small mobile */
+@media (max-width: 400px) {
+  .product-thumbnail {
+    width: 180px;
+    height: 180px;
+  }
+
+  .product-images {
+    width: 50px;
+    height: 50px;
+  }
+}
+
+/* for cart*********************************************************************** */
 
 .cart-container {
   padding: 1rem 0 0 1rem;
@@ -452,7 +595,8 @@ button:disabled {
 
 /* Image */
 .cart-img-w img {
-  width: 180px;
+  width: 100%;
+  max-width: 180px;
   object-fit: contain;
 }
 
@@ -562,6 +706,7 @@ button:disabled {
 .cart-price {
   margin: 4px 0;
   color: #fa8900;
+  white-space: nowrap;
 }
 
 .buy-btn {
@@ -579,4 +724,189 @@ button:disabled {
 .proceed p {
   color: #666;
   margin: 6px 0;
+}
+
+/* ================= RESPONSIVE CART ================= */
+
+/* Tablet */
+@media (max-width: 1024px) {
+  .cart-main-w {
+    flex-direction: column;
+    /* margin-right: 1rem; */
+  }
+
+  .proceed {
+    width: 100%;
+    position: static; /* remove sticky */
+    margin-right: 0;
+  }
+
+  .cart-products-w {
+    flex-direction: row;
+    gap: 16px;
+  }
+
+  .cart-img-w img {
+    width: 140px;
+  }
+
+  .cart-p-price {
+    text-align: left;
+    margin-top: 8px;
+  }
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+  .cart-container {
+    padding: 10px;
+  }
+
+  /* Stack product */
+  .cart-products-w {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 12px;
+  }
+
+  .cart-img-w img {
+    width: 120px;
+  }
+
+  .cart-content h3 {
+    font-size: 15px;
+  }
+
+  .cart-p-price {
+    font-size: 18px;
+    text-align: center;
+  }
+
+  /* Quantity center */
+  .cart-quantity {
+    margin: 10px auto;
+  }
+
+  /* Proceed box */
+  .proceed {
+    width: 100%;
+    padding: 12px;
+  }
+
+  .proceed h3 {
+    font-size: 16px;
+    white-space: normal;
+  }
+
+  /* Empty cart image */
+  .empty-cart-w img {
+    height: 12rem;
+  }
+
+  /* Flex rows wrap */
+  .flex {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+}
+
+/* Small mobile */
+@media (max-width: 400px) {
+  .cart-img-w img {
+    width: 100px;
+  }
+
+  .cart-content h3 {
+    font-size: 14px;
+  }
+
+  .cart-p-price {
+    font-size: 16px;
+  }
+
+  .cart-quantity button {
+    padding: 4px 8px;
+  }
+
+  .cart-quantity p {
+    width: 2.5rem;
+    font-size: 14px;
+  }
+}
+
+/* for form ********************************************************************************************* */
+
+.center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.center form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 2rem;
+}
+
+.center .in-w {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.center .s-in-w {
+  display: flex;
+  gap: 1rem;
+}
+
+.center .s-in-w:nth-child(2) {
+  position: relative;
+}
+
+.center .in-w label {
+  margin-bottom: 8px;
+}
+
+.center .s-in-w label {
+  margin-right: 8px;
+}
+
+.center form input {
+  font-size: 0.8rem;
+  height: 2rem;
+  background-color: #fff;
+  outline: none;
+  border: 1px solid #999;
+  padding: 8px;
+  border-radius: 4px;
+}
+
+.action-btn {
+  display: flex;
+  justify-content: right;
+}
+
+.action-btn button {
+  background: #ffa41c;
+  color: #111;
+  width: 160px;
+  border: none;
+  padding: 6px 10px;
+  border-radius: 6px;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.error {
+  color: red;
+}
+
+.subTotalPrice {
+  text-align: left !important;
+  color: #fa8900;
 }

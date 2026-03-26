@@ -4,6 +4,7 @@ import Products from "../components/Products";
 import { useEffect } from "react";
 import { getProducts } from "../store/fetchRandomProducts";
 import emptyCart from "../asset/empty-cart.png";
+import { Link } from "react-router-dom";
 
 export default function Cart() {
   const dispatch = useDispatch();
@@ -87,7 +88,9 @@ export default function Cart() {
                   <h4 className="cart-price">{`$ ${Math.round(subTotalPrice)}/-`}</h4>
                 </div>
                 <p>Inclusive of all taxes</p>
-                <button className="btn light buy-btn">Proceed to buy</button>
+                <Link to="/checkout">
+                  <button className="btn light buy-btn">Proceed to buy</button>
+                </Link>
               </div>
             )}
           </div>
