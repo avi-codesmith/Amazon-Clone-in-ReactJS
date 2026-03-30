@@ -14,7 +14,7 @@ This project focuses on scalable architecture, clean state management, and real-
 
 <img width="800" alt="image" src="https://github.com/user-attachments/assets/128597fa-00bb-4e7f-99c0-5289ed162e25" />
 
-## 🧠 Tech Stack
+## 🧠 Tech Stack and React topics
 
 - **React JS**
 - **Redux Toolkit**
